@@ -1,5 +1,5 @@
 # javascript30day
-30天javascript项目的自我挑战记录
+30天javascript项目的自我挑战记录，简单记下自己的实现过程
 
 来源于网上的一个30天挑战纯javascript的项目，包含视频教程、项目初始代码、项目最终代码
 
