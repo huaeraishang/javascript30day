@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+</head>
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div>
+
+  <style>
+  html {
+    color: black;
+    font-family: sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    font-size: 100px;
+  }
+  </style>
+
+<script>
+  const hero = document.querySelector('.hero')
+  const h1 = hero.querySelector('h1')
+  function shadow(e) {
+    const factor = 500
+    const { offsetWidth: width, offsetHeight: height } = hero
+    let { offsetX: posX, offsetY: posY} = e
+    console.log(`offsetWidth is: ${width}, offsetHeight is: ${height}`)
+    console.log(`offsetX is: ${posX}, offsetY is: ${posY}`)
+    console.log('this is: ', this)
+    console.log('e.target is: ', e.target)
+    if (this !== e.target) {
+      // 鼠标移动到h1上面，鼠标的offset会从h1元素的边界算起，需要加上h1元素的left和top偏移
+      posX += e.target.offsetLeft
+      posY += e.target.offsetTop
+    }
+
+    // 计算鼠标偏移距离hero元素中心点的距离
+    const marginX = posX - width / 2
+    const marginY = posY - height / 2
+
+    console.log(`marginX is: ${marginX}, marginY is: ${marginY}`)
+
+    h1.style.textShadow = `
+    ${marginX}px ${marginY * -1}px 0 red,
+    ${marginX * -1}px ${marginY}px 0 black,
+    ${marginY}px ${marginX * -1}px 0 orange,
+    ${marginY * -1}px ${marginX}px 0 green
+    `
+  }
+  hero.addEventListener('mousemove', shadow)
+</script>
+</body>
+</html>
